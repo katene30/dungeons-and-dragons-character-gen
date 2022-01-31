@@ -11,6 +11,6 @@ interface Person {
     charisma: number,
     speed: number,
     racialTraits: string[],
-    lanhguages: string[],
+    languages: string[],
     
 }

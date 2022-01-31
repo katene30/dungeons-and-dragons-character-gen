@@ -4,31 +4,32 @@ const halflingButton = document.querySelector('#halfling')!;
 const humanButton = document.querySelector('#human')!;
 
 dwarfButton.addEventListener('click', () => {
-    let subRace = prompt("Please enter your subrace e.g hill dwarf, mountain dwarf", "hill dwarf")
+    let subRace = prompt("Please enter your subrace e.g hill dwarf, mountain dwarf", "hill dwarf")!.toUpperCase()
     
-    createDwarf({subRace: subRace!.toUpperCase()})
+    createDwarf({subRace: subRace})
 });
 
 elfButton.addEventListener('click', () => {
-    let subRace = prompt("Please enter your subrace e.g high elf or wood elf", "wood elf")
+    let subRace = prompt("Please enter your subrace e.g high elf or wood elf", "wood elf")!.toUpperCase()
     
-    createElf({subRace: subRace!.toUpperCase()})
+    createElf({subRace: subRace})
 });
 
 halflingButton.addEventListener('click', () => {
-    let subRace = prompt("Please enter your subrace e.g lightfoot or stout", "stout")
-    
-    createHalfling({subRace: subRace!.toUpperCase()})
+    let subRace = prompt("Please enter your subrace e.g lightfoot or stout", "stout")!.toUpperCase()
+
+        createHalfling({subRace: subRace})
 });
 
 humanButton.addEventListener('click', () => {
-    let extraLanguage = prompt("Please enter an extra language to learn e.g dwarvish, elvish or halfling", "elvish")
+    let extraLanguage = prompt("Please enter an extra language to learn e.g dwarvish, elvish or halfling", "elvish")!.toUpperCase()
     
-    createHuman({languages: [extraLanguage!.toUpperCase()]})
+    createHuman({languages: [extraLanguage]})
 });
 
 
 interface RaceConfig {
+    race: string,
     skillBonus: object[],
     age: number,
     speed: number,
@@ -55,6 +56,7 @@ function createDwarf(config: any){
     const minAge = 50
     const maxAge = 350
 
+    config.race = Race.DWARF
     config.skillBonus = [{constitution: 2}]
     config.age = randomAge(minAge,maxAge)
     config.speed = 25
@@ -83,6 +85,7 @@ function createElf(config: any){
     const minAge = 100
     const maxAge = 750
 
+    config.race = Race.ELF
     config.skillBonus = [{dexterity: 2}]
     config.age = randomAge(minAge,maxAge)
     config.speed = 30
@@ -112,6 +115,7 @@ function createHalfling(config: any){
     const minAge = 20
     const maxAge = 200
 
+    config.race = Race.HALFLING
     config.skillBonus = [{dexterity: 2}]
     config.age = randomAge(minAge,maxAge)
     config.speed = 25
@@ -141,6 +145,7 @@ function createHuman(config: any){
     const minAge = 18
     const maxAge = 80
 
+    config.race = Race.HUMAN
     config.skillBonus = [
         {dexterity: 1},
         {strength: 1},
